@@ -90,7 +90,7 @@ f_data.close()
 ###########################################
 # 2.1 - read results from vmod
 ###########################################
-
+time_v = []
 data_v = []
 cnt = 0
 with open(f_path + "tb_top_s%d.txt" % (int(SPARSITY*10))) as f:
@@ -102,8 +102,10 @@ with open(f_path + "tb_top_s%d.txt" % (int(SPARSITY*10))) as f:
         line = line.replace("\n", "")
         line = line.split(", ")
         if(len(line)>1):
+            time_v.append(line[0])
             data_v.append(line[1])
         line = f.readline()
+time_v.append("")
 data_v.append("")
 
 
@@ -125,4 +127,4 @@ for i in range(len(data_py)):
 
 if(error_flag == False):
     print("[top - CORRECT]")
-    print(data_py[len(data_py)-1])
+    print(time_v[len(data_py)-1] + ", " + data_py[len(data_py)-1])
